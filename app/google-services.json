@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "901994846056",
+    "project_id": "final-assignment-ce90b",
+    "storage_bucket": "final-assignment-ce90b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901994846056:android:ef0cffa40445c61181a8dd",
+        "android_client_info": {
+          "package_name": "com.example.finalassignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901994846056-sip63in8llm1rahl4s3ljbj2oovt7dej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1RvIx2wRWQJq-bouOjjZ2-vufE44zdOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901994846056-sip63in8llm1rahl4s3ljbj2oovt7dej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
