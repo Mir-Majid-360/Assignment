@@ -31,6 +31,11 @@ class DepartmentDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding.toolbar.tvTitle.text ="Department Details"
     }
 
     companion object {

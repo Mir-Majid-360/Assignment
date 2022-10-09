@@ -39,6 +39,7 @@ class EmployeeDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViewModel()
+        setListeners()
 //      list= mainViewModel.getDepartments()
 
 
@@ -46,6 +47,9 @@ class EmployeeDetailsFragment : Fragment() {
 
     }
 
+    private fun setListeners() {
+        binding.toolbar.tvTitle.text ="Employee Details"
+    }
 
 
     companion object {

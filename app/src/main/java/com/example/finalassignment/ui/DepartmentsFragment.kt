@@ -42,10 +42,16 @@ class DepartmentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
+        setListeners()
         list= mainViewModel.getDepartments()
         initAdapter()
 
     }
+
+    private fun setListeners() {
+        binding.toolbar.tvTitle.text ="Departments"
+    }
+
     fun initAdapter() {
         list.clear()
         recyclerView = binding.departmentsRecyclerView

@@ -40,10 +40,16 @@ class EmployeesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
+        setListeners()
 //      list= mainViewModel.getDepartments()
         initAdapter()
 
     }
+
+    private fun setListeners() {
+        binding.toolbar.tvTitle.text ="Employees"
+    }
+
     fun initAdapter() {
         list.clear()
         recyclerView = binding.employeesRecyclerView
