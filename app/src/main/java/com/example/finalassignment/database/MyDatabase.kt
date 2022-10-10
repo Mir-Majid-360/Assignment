@@ -1,5 +1,6 @@
 package com.example.finalassignment.database
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -17,7 +18,7 @@ class MyDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
     /** Table Names **/
     private val TABLE_DEPARTMENT_MANAGER = "department_manager"
     private val TABLE_DEPARTMENTS = "departments"
-    private val TABLE_EMP_DEPARTMENTS = "emp_manager"
+    private val TABLE_EMP_DEPARTMENTS = "emp_departments"
     private val TABLE_EMPLOYEES = "employees"
     private val TABLE_SALARIES = "salaries"
     private val TABLE_TITLE = "title"
@@ -102,14 +103,13 @@ class MyDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
             }
             val db = writableDatabase
             val contentValues = ContentValues()
-            if (departmentManager != null) {
+
                 contentValues.put(KEY_EMP_NO, departmentManager.emp_no)
                 contentValues.put(KEY_DEPARTMENT_NO, departmentManager.dept_no)
                 contentValues.put(KEY_FROM_DATE, departmentManager.from_date)
                 contentValues.put(KEY_TO_DATE, departmentManager.to_date)
 
                 db.insert(TABLE_DEPARTMENT_MANAGER, null, contentValues)
-            }
 
         } catch (e: Exception) {
 
@@ -259,7 +259,6 @@ class MyDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
             contentValues.put(KEY_DEPARTMENT_NO, empDepartments.dept_no)
             contentValues.put(KEY_FROM_DATE, empDepartments.from_date)
             contentValues.put(KEY_TO_DATE, empDepartments.to_date)
-            db.insert(TABLE_EMP_DEPARTMENTS, null, contentValues)
             db.update(
                 TABLE_EMP_DEPARTMENTS,
                 contentValues,
@@ -522,13 +521,15 @@ class MyDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
     fun getDepartments(): ArrayList<Departments> {
         val db = this.readableDatabase
         val cursor: Cursor = db.rawQuery("SELECT * FROM $TABLE_DEPARTMENTS", null)
-        val departments: ArrayList<Departments> = ArrayList()
+        val arrdepartments: ArrayList<Departments> = ArrayList()
         while (cursor.moveToNext()) {
             var departments = Departments()
             departments.dept_no = cursor.getString(0)
             departments.dept_name = cursor.getString(1)
+            arrdepartments.add(departments)
+
         }
-        return departments
+        return arrdepartments
     }
 
     fun getDepartmentManager(): ArrayList<DepartmentManager> {
@@ -544,4 +545,37 @@ class MyDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
         }
         return departmentManager
     }
+
+    @SuppressLint("Range")
+    fun getEmployeeModel():ArrayList<EmployeeModel>{
+        var arrEmployeeModel: ArrayList<EmployeeModel> = ArrayList()
+        try {
+
+
+            val db = this.readableDatabase
+            var sql ="SELECT E.$KEY_FIRST_NAME,E.$KEY_LAST_NAME, E.$KEY_GENDER,E.$KEY_HIRE_DATE,D.$KEY_DEPARTMENT_NAME ,T.$KEY_TITLE FROM $TABLE_DEPARTMENTS as D JOIN $TABLE_EMP_DEPARTMENTS  as ED ON D.dept_no = ED.dept_no JOIN $TABLE_EMPLOYEES as E ON ED.emp_no = E.emp_no JOIN $TABLE_TITLE as T ON E.emp_no = T.emp_no"
+
+
+
+            val cursor: Cursor? = db?.rawQuery(sql, null)
+            if (cursor?.moveToFirst()!!) {
+                while (cursor?.moveToNext()!!) {
+                    var employeeModel = EmployeeModel()
+                    employeeModel.first_name = cursor.getString(cursor.getColumnIndex(KEY_FIRST_NAME))
+                    employeeModel.last_name = cursor.getString(cursor.getColumnIndex(KEY_LAST_NAME))
+                    employeeModel.gender = cursor.getString(cursor.getColumnIndex(KEY_GENDER))
+                    employeeModel.title = cursor.getString(cursor.getColumnIndex(KEY_TITLE))
+                    employeeModel.hire_date = cursor.getString(cursor.getColumnIndex(KEY_HIRE_DATE))
+                    employeeModel.department = cursor.getString(cursor.getColumnIndex(KEY_DEPARTMENT_NAME))
+
+                    arrEmployeeModel.add(employeeModel)
+
+                }
+            }
+        }catch (e:Exception) {
+
+        }
+        return arrEmployeeModel
+    }
+
 }

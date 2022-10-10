@@ -107,5 +107,9 @@ class Repository(val myAPI: MyAPI) {
         return myDatabase.getDepartmentManager()
     }
 
+    fun getEmployeeModelDaa():ArrayList<EmployeeModel>{
+        return  myDatabase.getEmployeeModel()
+    }
+
 
 }

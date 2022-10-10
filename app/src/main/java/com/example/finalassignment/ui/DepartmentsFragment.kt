@@ -42,9 +42,8 @@ class DepartmentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
-        setListeners()
-        list= mainViewModel.getDepartments()
         initAdapter()
+        setListeners()
 
     }
 
@@ -54,6 +53,7 @@ class DepartmentsFragment : Fragment() {
 
     fun initAdapter() {
         list.clear()
+        list = mainViewModel.getDepartments()
         recyclerView = binding.departmentsRecyclerView
         departmentsAdapter = DepartmentsAdapter(activity as Context, list)
         recyclerView.layoutManager = LinearLayoutManager(activity)

@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalassignment.adapters.EmployeeAdapter
 import com.example.finalassignment.databinding.FragmentEmployeesBinding
+import com.example.finalassignment.models.EmployeeModel
 import com.example.finalassignment.models.Employees
 import com.example.finalassignment.viewmodel.MainViewModel
 
 class EmployeesFragment : Fragment() {
     lateinit var binding: FragmentEmployeesBinding
     lateinit var mainViewModel: MainViewModel
-    var list = ArrayList<Employees>()
+    var list = ArrayList<EmployeeModel>()
 
     lateinit var recyclerView: RecyclerView
     lateinit var employeeAdapter: EmployeeAdapter
@@ -52,6 +53,7 @@ class EmployeesFragment : Fragment() {
 
     fun initAdapter() {
         list.clear()
+        list = mainViewModel.getEmployeeModel()
         recyclerView = binding.employeesRecyclerView
         employeeAdapter = EmployeeAdapter(activity as Context, list)
         recyclerView.layoutManager = LinearLayoutManager(activity)

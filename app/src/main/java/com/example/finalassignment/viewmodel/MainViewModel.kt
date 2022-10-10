@@ -139,8 +139,8 @@ class MainViewModel() : ViewModel() {
 
         return repository.getDepartmentsData()
     }
-    fun getDepartmentsManager():ArrayList<DepartmentManager>{
-        return repository.getDepartmentsManagerData()
+    fun getEmployeeModel():ArrayList<EmployeeModel>{
+        return repository.getEmployeeModelDaa()
     }
 //    fun getDepartmentsManager():ArrayList<DepartmentManager>{
 //        return repository.getDepartmentManagerData()
