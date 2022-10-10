@@ -76,6 +76,18 @@
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHireDate" />
+
+
+    <TextView
+        android:id="@+id/tvHireDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Hire Date"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvEmployeeTitle" />
 
     <TextView
@@ -89,6 +101,29 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvYearsSpent" />
+
+    <TextView
+        android:id="@+id/tv_salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Salary :"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_gender" />
+
+    <TextView
+        android:id="@+id/tvEmployeeSalary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="1234"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/tv_salary"
+        app:layout_constraintTop_toBottomOf="@id/tv_gender" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

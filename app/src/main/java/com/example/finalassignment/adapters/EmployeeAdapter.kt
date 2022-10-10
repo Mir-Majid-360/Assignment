@@ -39,6 +39,8 @@ class EmployeeAdapter(var context: Context,var employeeModel: ArrayList<Employee
         val empTitle :TextView = view.findViewById(R.id.tvEmployeeTitle)
         val empGender :TextView = view.findViewById(R.id.tvEmployeeGender)
         val empWorkingYears :TextView = view.findViewById(R.id.tvTimeSpent)
+        val hireDate :TextView = view.findViewById(R.id.tvHireDate)
+        val salary : TextView = view.findViewById(R.id.tvEmployeeSalary)
 
         fun bind(data :EmployeeModel) {
 
@@ -47,8 +49,9 @@ class EmployeeAdapter(var context: Context,var employeeModel: ArrayList<Employee
             empDepartment.text = data.department
             empTitle.text = data.title
             empGender.text = data.gender
-            Log.d("DATEEE", data.hire_date)
+            hireDate.text = data.hire_date
             empWorkingYears.text =getExperience(data.hire_date)
+            salary.text = data.salary.toString()
 
 
         }

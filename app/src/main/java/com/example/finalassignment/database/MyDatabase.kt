@@ -553,7 +553,13 @@ class MyDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
 
 
             val db = this.readableDatabase
-            var sql ="SELECT E.$KEY_FIRST_NAME,E.$KEY_LAST_NAME, E.$KEY_GENDER,E.$KEY_HIRE_DATE,D.$KEY_DEPARTMENT_NAME ,T.$KEY_TITLE FROM $TABLE_DEPARTMENTS as D JOIN $TABLE_EMP_DEPARTMENTS  as ED ON D.dept_no = ED.dept_no JOIN $TABLE_EMPLOYEES as E ON ED.emp_no = E.emp_no JOIN $TABLE_TITLE as T ON E.emp_no = T.emp_no"
+            var sql ="SELECT E.$KEY_FIRST_NAME,E.$KEY_LAST_NAME, E.$KEY_GENDER,E.$KEY_HIRE_DATE,"+
+                    "D.$KEY_DEPARTMENT_NAME ,T.$KEY_TITLE,S.$KEY_SALARY  FROM $TABLE_DEPARTMENTS as D"+
+                    " JOIN $TABLE_EMP_DEPARTMENTS  as ED ON D.dept_no = ED.dept_no "+
+                    "JOIN $TABLE_EMPLOYEES as E ON ED.emp_no = E.emp_no "+
+                    "JOIN $TABLE_TITLE as T ON E.emp_no = T.emp_no "+
+                    "JOIN $TABLE_SALARIES as S ON S.$KEY_EMP_NO = E.$KEY_EMP_NO ORDER BY(S.$KEY_SALARY)"
+
 
 
 
@@ -567,6 +573,7 @@ class MyDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
                     employeeModel.title = cursor.getString(cursor.getColumnIndex(KEY_TITLE))
                     employeeModel.hire_date = cursor.getString(cursor.getColumnIndex(KEY_HIRE_DATE))
                     employeeModel.department = cursor.getString(cursor.getColumnIndex(KEY_DEPARTMENT_NAME))
+                    employeeModel.salary = cursor.getInt(cursor.getColumnIndex(KEY_SALARY))
 
                     arrEmployeeModel.add(employeeModel)
 
